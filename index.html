@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shop Fractions</title>
+  <!-- PWA plumbing: manifest = install metadata, theme-color = phone status bar -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1b1f24">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Shop Fractions</h1>
+    <!-- Which side gets shown first. "Mixed" picks randomly per card. -->
+    <select id="mode" aria-label="Drill mode">
+      <option value="frac">Fraction → Decimal</option>
+      <option value="dec">Decimal → Fraction</option>
+      <option value="mixed">Mixed</option>
+    </select>
+  </header>
+
+  <main>
+    <div id="progress" class="progress"></div>
+
+    <!-- The card. No longer tap-to-flip: answering is what flips it. -->
+    <div id="card" class="card" aria-live="polite">
+      <div class="face front">
+        <span id="prompt-label" class="label"></span>
+        <span id="prompt" class="prompt"></span>
+        <!-- Only filled when the prompt is a decimal: the spoken form rides along with it -->
+        <span id="prompt-sub" class="sub"></span>
+      </div>
+      <!-- Back = the whole answer. Decimal + spoken are one unit; fraction is the header. -->
+      <div class="face back">
+        <div id="verdict" class="verdict"></div>
+        <div class="ans-frac">
+          <span id="a-frac"></span>
+          <span id="a-equiv" class="equiv"></span>
+        </div>
+        <div class="ans-dec">
+          <span id="a-dec" class="dec"></span>
+          <span id="a-spoken" class="sub"></span>
+        </div>
+      </div>
+    </div>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+
+    <!-- Answer area 1: typed decimal (Fraction → Decimal).
+         A <form> means the phone's Enter/Go key submits for free.
+         inputmode="decimal" pops the number pad with a "." key. -->
+    <form id="type-form" class="type-form" hidden autocomplete="off">
+      <input id="answer" type="text" inputmode="decimal" placeholder=".xxxx"
+             aria-label="Your decimal answer" autocapitalize="off" spellcheck="false">
+      <button type="submit" class="btn got">Check</button>
+      <p id="form-msg" class="form-msg" role="alert"></p>
+      <button type="button" id="skip" class="link">Don't know — show me</button>
+    </form>
+
+    <!-- Answer area 2: multiple choice (Decimal → Fraction). Buttons built in app.js. -->
+    <div id="choices" class="choices" hidden></div>
+
+    <!-- After answering: one button to move on. -->
+    <button id="next" class="btn next" hidden>Next</button>
+
+    <!-- End-of-round screen -->
+    <section id="done" class="done" hidden>
+      <h2>Round done</h2>
+      <p id="summary"></p>
+      <button id="restart" class="btn got">Go again</button>
+    </section>
+  </main>
+
+  <script src="cards.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
