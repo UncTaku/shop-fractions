@@ -1,7 +1,7 @@
 # Shop Fractions
 
 Offline flashcards for fraction ↔ decimal conversions, machinist style.
-Data from *Machine Fundamentals* p.412.
+
 
 **Use it:** open the site on your phone → browser menu → **Add to Home Screen**. Works offline after the first visit.
 
