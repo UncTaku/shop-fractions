@@ -86,7 +86,7 @@ main {
 .front { align-items: center; text-align: center; }
 .label { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
 .prompt { font-size: clamp(2.6rem, 14vw, 4.5rem); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.sub { color: var(--muted); font-size: 1.05rem; line-height: 1.35; }
+.sub { color: var(--ink); font-size: 1.25rem; font-weight: 600; line-height: 1.35; }
 .sub:empty { display: none; }
 
 .verdict { font-weight: 700; font-size: 1.05rem; }

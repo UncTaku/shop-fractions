@@ -5,7 +5,7 @@
 // UPDATE RULE: any time you change ANY file in site/, bump VERSION.
 // The browser re-checks sw.js on each visit; a changed byte means "new
 // worker" -> it re-downloads everything into a fresh cache and deletes the old.
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE = `shopfrac-${VERSION}`;
 const FILES = [
   "./",

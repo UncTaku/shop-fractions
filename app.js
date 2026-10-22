@@ -39,6 +39,13 @@ function checkDecimal(input, correctDec) {
   return typed === want ? "right" : "wrong";
 }
 
+// Display only: drop a trailing 4th-place zero and the leading zero
+// (0.6250 -> .625, 0.0625 -> .0625). Stored data stays 4 places so the
+// answer checker still accepts .6250.
+function show(dec) {
+  return (dec.endsWith("0") ? dec.slice(0, -1) : dec).replace(/^0/, "");
+}
+
 // Fisher–Yates shuffle: the standard unbiased way to shuffle an array.
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -84,14 +91,14 @@ function next() {
     $("prompt-sub").textContent = "";
   } else {
     $("prompt-label").textContent = "What's the fraction?";
-    $("prompt").textContent = c.dec;
+    $("prompt").textContent = show(c.dec);
     $("prompt-sub").textContent = c.spoken;
   }
 
   // Fill in the back now; it's hidden until answered.
   $("a-frac").textContent = c.frac;
   $("a-equiv").textContent = c.equiv.length ? "= " + c.equiv.join(" = ") : "";
-  $("a-dec").textContent = c.dec;
+  $("a-dec").textContent = show(c.dec);
   $("a-spoken").textContent = c.spoken;
   $("verdict").textContent = "";
 
